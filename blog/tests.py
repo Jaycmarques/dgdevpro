@@ -17,7 +17,10 @@ class PostModelTest(TestCase):
         post = Post.objects.get(id=1)
         post.publish()
         self.assertIsNotNone(post.published_date)
-        self.assertTrue(post.published_date, timezone.now())
+        # Verifica se published_date está próximo de agora, com uma tolerância de 1 segundo
+        now = timezone.now()
+        if post.published_date is not None:
+            self.assertTrue(abs((now - post.published_date).total_seconds()) < 1)
 
     def test_str_method(self):
         post = Post.objects.get(id=1)
