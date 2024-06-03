@@ -39,4 +39,6 @@ jobs:
       run: flake8 .
     - name: Run django test runner
       run: python3 manage.py test  
+    - name: Run pytest
+      run: pytest -v --cov=. 
     
