@@ -1,3 +1,3 @@
 class Sender:
-    def send(self, receiver, sender, subject, text):
-        return 'julio.jcmarques@gmail.com'
+    def send(self, receiver, sender, subject, body):
+        return receiver
