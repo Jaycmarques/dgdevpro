@@ -1,4 +1,4 @@
-from blog.spam.mail_sender import Sender
+from blog.spam.mail_sender import Sender, EmailNotValid
 import pytest
 
 def test_send_mail():
@@ -13,4 +13,11 @@ def test_receiver(receiver):
 
     assert receiver in result
 
+@pytest.mark.parametrize('receiver', ['', 'Julio'])
+def test_invalid_receiver(receiver):
+    sender = Sender()
+    with pytest.raises(EmailNotValid):
+        sender.send(receiver, 'julionihongo@gmail.com', 'criação enviar email', 'aprendendo a criar testes de spam')
+
+    
 
