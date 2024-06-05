@@ -16,3 +16,9 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+    
+class User:
+    def __init__(self, nome):
+        self.nome = nome
+        self.id = None
+
