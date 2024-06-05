@@ -1,21 +1,4 @@
-from blog.db import Conexao
 from blog.models import User
-import pytest
-
-
-@pytest.fixture
-def conexao():
-    conexao_obj = Conexao()
-    yield Conexao()
-    conexao_obj.fechar()
-
-
-@pytest.fixture
-def sessao(conexao):
-    sessao_obj = conexao.gerar_sessao()
-    yield sessao_obj
-    sessao_obj.roll_back()
-    sessao_obj.fechar()
 
 
 def test_save_user(sessao):
