@@ -1,5 +1,5 @@
 from blog.spam.mail_sender import Sender, EmailNotValid
-import pytest
+import pytest  # type: ignore
 
 
 def test_send_mail():
