@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from .models import Post
 
+
 class PostModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):

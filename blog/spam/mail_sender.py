@@ -4,5 +4,6 @@ class Sender:
             raise EmailNotValid(f'Receiver e-mail not valid: {receiver}')
         return receiver
 
+
 class EmailNotValid(Exception):
     pass
