@@ -1,25 +1,31 @@
 from blog.db import Conexao
 from blog.models import User
+import pytest
 
 
-def test_save_user():
-    conexao = Conexao()
-    sessao = conexao.gerar_sessao()
+@pytest.fixture
+def conexao():
+    conexao_obj = Conexao()
+    yield Conexao()
+    conexao_obj.fechar()
+
+
+@pytest.fixture
+def sessao(conexao):
+    sessao_obj = conexao.gerar_sessao()
+    yield sessao_obj
+    sessao_obj.roll_back()
+    sessao_obj.fechar()
+
+
+def test_save_user(sessao):
     user = User(nome='Julio')
     sessao.salvar(user)
     assert isinstance(user.id, int)
-    sessao.roll_back()
-    sessao.fechar()
-    conexao.fechar()
 
 
-def test_listar_users():
-    conexao = Conexao()
-    sessao = conexao.gerar_sessao()
+def test_listar_users(sessao):
     users = [User(nome='Julio'), User(nome='Lucas')]
     for user in users:
         sessao.salvar(user)
     assert users == sessao.listar()
-    sessao.roll_back()
-    sessao.fechar()
-    conexao.fechar()
