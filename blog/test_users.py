@@ -1,5 +1,5 @@
-from db import Conexao
-from models import User
+from blog.db import Conexao
+from blog.models import User
 
 
 def save_user():
