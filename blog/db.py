@@ -1,5 +1,5 @@
 class Conexao:
-    def gerar_sessao():
+    def gerar_sessao(self):
         return Sessao()
 
     def fechar(self):
@@ -12,14 +12,14 @@ class Sessao:
 
     def salvar(self, user):
         Sessao.count += 1
-        user.id = Sessao.count
+        user.id = Sessao.count  # type: ignore
         self.users.append(user)
 
     def listar(self):
         return self.users
 
     def roll_back(self):
-        pass
+        self.users.clear()
 
     def fechar(self):
         pass

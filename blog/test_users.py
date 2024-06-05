@@ -2,7 +2,7 @@ from blog.db import Conexao
 from blog.models import User
 
 
-def save_user():
+def test_save_user():
     conexao = Conexao()
     sessao = conexao.gerar_sessao()
     user = User(nome='Julio')
@@ -13,12 +13,12 @@ def save_user():
     conexao.fechar()
 
 
-def listar_users():
+def test_listar_users():
     conexao = Conexao()
     sessao = conexao.gerar_sessao()
     users = [User(nome='Julio'), User(nome='Lucas')]
     for user in users:
-        sessao.salvar(users)
+        sessao.salvar(user)
     assert users == sessao.listar()
     sessao.roll_back()
     sessao.fechar()
