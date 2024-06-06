@@ -1,8 +1,7 @@
 from unittest.mock import Mock
-from blog.spam.mail_sender import Enviador
 from blog.spam.main import EnviadorDeSpam
 from blog.models import User
-import pytest
+import pytest  # type: ignore
 
 
 @pytest.mark.parametrize(
